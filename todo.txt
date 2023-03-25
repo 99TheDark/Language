@@ -1,4 +1,5 @@
 • Variable usage
 • Variable assignment
+• Multiline expressions
 • Check for strings using a string reading mode
 • Row & col for error messages
