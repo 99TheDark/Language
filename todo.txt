@@ -1,5 +1,4 @@
-• Variable usage
-• Multiline expressions
-• Row & col for error messages
-• Error for assigning invalid variable name
 • Custom error for missing left-hand side of =
+• Error for assigning invalid variable name
+• Right-side unary operators (++, --, etc)
+• Variable reassignment (a = b, +=, -=, etc)
