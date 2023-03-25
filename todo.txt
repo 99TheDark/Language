@@ -1,4 +1,4 @@
-• Longer operators like &&, ||, etc
-• Simple errors
 • Variable usage
 • Variable assignment
+• Check for strings using a string reading mode
+• Row & col for error messages
