@@ -1,0 +1,55 @@
+{
+    "parsed": "operator",
+    "operation": "assign",
+    "unary": false,
+    "left": {
+        "parsed": "variable",
+        "datatype": "any",
+        "name": "thing"
+    },
+    "right": {
+        "parsed": "operator",
+        "operation": "subtract",
+        "unary": false,
+        "left": {
+            "parsed": "operator",
+            "operation": "multiply",
+            "unary": false,
+            "left": {
+                "parsed": "literal",
+                "type": "number",
+                "value": 3
+            },
+            "right": {
+                "parsed": "literal",
+                "type": "number",
+                "value": 7
+            }
+        },
+        "right": {
+            "parsed": "operator",
+            "operation": "exponent",
+            "unary": false,
+            "left": {
+                "parsed": "literal",
+                "type": "number",
+                "value": 2
+            },
+            "right": {
+                "parsed": "operator",
+                "operation": "add",
+                "unary": false,
+                "left": {
+                    "parsed": "literal",
+                    "type": "number",
+                    "value": 5
+                },
+                "right": {
+                    "parsed": "literal",
+                    "type": "number",
+                    "value": 6
+                }
+            }
+        }
+    }
+}
