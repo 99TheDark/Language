@@ -13,22 +13,37 @@ class Operator {
             this.binary = args[2] ?? true;
         }
     }
-}
+};
+
+class DataType {
+    constructor(name) {
+        this.name = name;
+    }
+};
+
+const datatypes = {
+    "num": new DataType("number"),
+    "bool": new DataType("boolean"),
+    "str": new DataType("string"),
+    "let": new DataType("any")
+};
 
 const operators = {
     "+": new Operator("add", 0),
-    "-": new Operator("sub", 0, true),
-    "*": new Operator("mult", 1),
-    "/": new Operator("div", 1),
-    "**": new Operator("pow"),
-    "&": new Operator("b-and"),
-    "|": new Operator("b-or"),
-    "^": new Operator("b-xor"),
+    "-": new Operator("subtract", 0, true),
+    "*": new Operator("multiply", 1),
+    "/": new Operator("divide", 1),
+    "**": new Operator("exponent"),
+    "&": new Operator("bitwise-and"),
+    "|": new Operator("bitwise-or"),
+    "^": new Operator("bitwise-xor"),
     "&&": new Operator("and"),
     "||": new Operator("or"),
     "!": new Operator("not", true, false),
     "!&": new Operator("nand"),
-    "!|": new Operator("nor")
+    "!|": new Operator("nor"),
+    "??": new Operator("nullish"),
+    "=": new Operator("assign")
 };
 
 const operator_chars = [];
@@ -44,8 +59,11 @@ while(true) {
     });
     if(!layer_success) break;
     operator_chars.push(arr);
-}
+};
 
+const keywords = Object.keys(datatypes); // to be concatenated with other constants
+
+// Create Abstract Syntax Tree
 var parse = function(code) {
     let parenthesis = [];
 
@@ -95,7 +113,7 @@ var parse = function(code) {
         if(String(right.value).length == 0) {
             throw "Operator with no operand";
         } else if(String(left.value).length == 0) {
-            if(op.binary) throw "Binary operator used with one operand";
+            if(!op.unary) throw "Binary operator used with one operand";
 
             return {
                 parsed: "operator",
@@ -104,7 +122,7 @@ var parse = function(code) {
                 value: right
             };
         } else {
-            if(op.unary) throw "Unary operator used with two operands";
+            if(!op.binary) throw "Unary operator used with two operands";
 
             return {
                 parsed: "operator",
@@ -118,26 +136,42 @@ var parse = function(code) {
         return parse(code.substring(parenthesis[0] + 1, parenthesis[1]));
     } else {
         let val = code.trim();
-        let num = Number(val);
-        let bool = Boolean(val);
-        if(!isNaN(num) && val.length != 0) {
-            return {
-                parsed: "literal",
-                type: "number",
-                value: num
-            };
-        } else if(bool) {
-            return {
-                parsed: "literal",
-                type: "boolean",
-                value: bool
-            };
-        } else {
-            return {
-                parsed: "literal",
-                type: "string",
-                value: val
-            };
+        let parts = val.split(" ");
+        if(parts.length == 1) {
+            if(keywords.includes(val)) throw "Invalid use of keyword";
+
+            let num = Number(val);
+            let bool = val == "true" ? true : val == "false" ? false : "";
+        
+            if(!isNaN(num) && val.length != 0) {
+                return {
+                    parsed: "literal",
+                    type: "number",
+                    value: num
+                };
+            } else if(bool) {
+                return {
+                    parsed: "literal",
+                    type: "boolean",
+                    value: bool
+                };
+            } else {
+                return {
+                    parsed: "literal",
+                    type: "string",
+                    value: val
+                };
+            }
+        } else if(Object.keys(datatypes).includes(parts[0])) {
+            if(parts.length == 2) {
+                return {
+                    parsed: "variable",
+                    datatype: datatypes[parts[0]].name,
+                    name: parts[1]
+                };
+            } else {
+                throw "Variable names cannot include spaces";
+            }
         }
     }
 };
@@ -145,5 +179,9 @@ var parse = function(code) {
 fs.readFile("test.txt", "utf8", (error, data) => {
     if(error) throw error;
 
-    console.log(JSON.stringify(parse(data), null, "    "));
+    let ast = JSON.stringify(parse(data), null, "    ");
+
+    fs.writeFile("./ast.json", ast, err => {
+        if(err) throw err;
+    });
 });
