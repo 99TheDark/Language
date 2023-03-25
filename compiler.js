@@ -55,12 +55,24 @@ var parse = function(code) {
     }
 
     if(curOperator) {
-        return {
-            type: "operator",
-            operation: operators[curOperator.type].id,
-            left: parse(code.substring(0, curOperator.idx)),
-            right: parse(code.substring(curOperator.idx + 1))
-        };
+        let left = parse(code.substring(0, curOperator.idx));
+        let right = parse(code.substring(curOperator.idx + 1));
+        if(left.value.length == 0) {
+            return {
+                type: "operator",
+                operation: operators[curOperator.type].id,
+                unary: true,
+                value: right
+            }
+        } else {
+            return {
+                type: "operator",
+                operation: operators[curOperator.type].id,
+                unary: false,
+                left: left,
+                right: right
+            };
+        }
     } else if(parenthesis.length) {
         return parse(code.substring(parenthesis[0] + 1, parenthesis[1]));
     } else {
