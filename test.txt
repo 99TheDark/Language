@@ -1,1 +1,1 @@
-!(true && false !| true)
+let thing = 3 * 7 - 2 ** (5 + 6)
