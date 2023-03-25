@@ -1,0 +1,4 @@
+• Longer operators like &&, ||, etc
+• Simple errors
+• Variable usage
+• Variable assignment
