@@ -1,5 +1,9 @@
+var w = 6.5 * 2 / 13 + 2 - 5;
 var x = 3 ** (7 - 4);
 var y = 5 - 2;
 var z = x * y;
 
+print w;
+print x;
+print y;
 print z;
