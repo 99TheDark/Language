@@ -1,4 +1,16 @@
-• Custom error for missing left-hand side of =
+Soon:
 • Error for assigning invalid variable name
 • Right-side unary operators (++, --, etc)
-• Variable reassignment (a = b, +=, -=, etc)
+• Comments by removing things between /* and */ along with // and \n
+• If and while conditionals
+• String mode
+• Runtime erros
+• Add types to variables
+• Error if two different types are combined in an operator
+
+Later:
+• Add a Semantic Analyzer
+• Create a name for the language (Perhaps Luna? A little generic of a name but fits with my profile theme)
+
+Bugs:
+• Error messages still don't display the correct column
