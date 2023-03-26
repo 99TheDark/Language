@@ -2,6 +2,67 @@
     {
         "parsed": "operator",
         "operation": "assign",
+        "catagory": "assignment",
+        "unary": false,
+        "left": {
+            "parsed": "variable",
+            "datatype": "auto",
+            "name": "w"
+        },
+        "right": {
+            "parsed": "operator",
+            "operation": "add",
+            "catagory": "numerical",
+            "unary": false,
+            "left": {
+                "parsed": "operator",
+                "operation": "multiply",
+                "catagory": "numerical",
+                "unary": false,
+                "left": {
+                    "parsed": "literal",
+                    "type": "number",
+                    "value": 6.5
+                },
+                "right": {
+                    "parsed": "operator",
+                    "operation": "divide",
+                    "catagory": "numerical",
+                    "unary": false,
+                    "left": {
+                        "parsed": "literal",
+                        "type": "number",
+                        "value": 2
+                    },
+                    "right": {
+                        "parsed": "literal",
+                        "type": "number",
+                        "value": 13
+                    }
+                }
+            },
+            "right": {
+                "parsed": "operator",
+                "operation": "subtract",
+                "catagory": "numerical",
+                "unary": false,
+                "left": {
+                    "parsed": "literal",
+                    "type": "number",
+                    "value": 2
+                },
+                "right": {
+                    "parsed": "literal",
+                    "type": "number",
+                    "value": 5
+                }
+            }
+        }
+    },
+    {
+        "parsed": "operator",
+        "operation": "assign",
+        "catagory": "assignment",
         "unary": false,
         "left": {
             "parsed": "variable",
@@ -11,6 +72,7 @@
         "right": {
             "parsed": "operator",
             "operation": "exponent",
+            "catagory": "numerical",
             "unary": false,
             "left": {
                 "parsed": "literal",
@@ -20,6 +82,7 @@
             "right": {
                 "parsed": "operator",
                 "operation": "subtract",
+                "catagory": "numerical",
                 "unary": false,
                 "left": {
                     "parsed": "literal",
@@ -37,6 +100,7 @@
     {
         "parsed": "operator",
         "operation": "assign",
+        "catagory": "assignment",
         "unary": false,
         "left": {
             "parsed": "variable",
@@ -46,6 +110,7 @@
         "right": {
             "parsed": "operator",
             "operation": "subtract",
+            "catagory": "numerical",
             "unary": false,
             "left": {
                 "parsed": "literal",
@@ -62,6 +127,7 @@
     {
         "parsed": "operator",
         "operation": "assign",
+        "catagory": "assignment",
         "unary": false,
         "left": {
             "parsed": "variable",
@@ -71,6 +137,7 @@
         "right": {
             "parsed": "operator",
             "operation": "multiply",
+            "catagory": "numerical",
             "unary": false,
             "left": {
                 "parsed": "variable",
@@ -85,6 +152,37 @@
     {
         "parsed": "operator",
         "operation": "print",
+        "catagory": "generic",
+        "unary": true,
+        "value": {
+            "parsed": "variable",
+            "value": "w"
+        }
+    },
+    {
+        "parsed": "operator",
+        "operation": "print",
+        "catagory": "generic",
+        "unary": true,
+        "value": {
+            "parsed": "variable",
+            "value": "x"
+        }
+    },
+    {
+        "parsed": "operator",
+        "operation": "print",
+        "catagory": "generic",
+        "unary": true,
+        "value": {
+            "parsed": "variable",
+            "value": "y"
+        }
+    },
+    {
+        "parsed": "operator",
+        "operation": "print",
+        "catagory": "generic",
         "unary": true,
         "value": {
             "parsed": "variable",
